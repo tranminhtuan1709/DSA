@@ -2,42 +2,44 @@ package Graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class DFS {
-    public static ArrayList<ArrayList<Integer>> v;
+    public static ArrayList<ArrayList<Integer>> a;
+    public static ArrayList<Integer> path;
     public static boolean[] visited = new boolean[100005];
     public static int[] par = new int[100005];
     public static int[] d = new int[100005];
-    public static int vertex, edge;
 
-    public static void init(ArrayList<ArrayList<Integer>> v, int m, int n) {
-        vertex = m;
-        edge = n;
+    public static void init(int m, int n, ArrayList<ArrayList<Integer>> adjacencyList) {
+        a = new ArrayList<>(adjacencyList);
+        path = new ArrayList<>();
         Arrays.fill(visited, false);
         Arrays.fill(par, -1);
         Arrays.fill(d, 0);
-        v = new ArrayList<ArrayList<Integer>>(v);
     }
 
     public static void dfs(int u) {
         visited[u] = true;
-        for (int i : v.get(u)) {
-            if (!visited[i]) {
-                visited[i] = true;
-                par[i] = u;
-                d[i] = d[u] + 1;
-                dfs(i);
+        for (int v : a.get(u)) {
+            if (!visited[v]) {
+                par[v] = u;
+                d[v] = d[u] + 1;
+                dfs(v);
             }
         }
     }
 
-    public static ArrayList<Integer> tracing(int u) {
-        ArrayList<Integer> path = new ArrayList<>();
-        int i = u;
-        while (i != -1) {
-            path.add(i);
-            i = par[i];
+    public static int getLength(int u) {
+        return d[u];
+    }
+
+    public static ArrayList<Integer> getPath(int u) {
+        while (u != -1) {
+            path.add(u);
+            u = par[u];
         }
+        Collections.reverse(path);
         return path;
     }
 }

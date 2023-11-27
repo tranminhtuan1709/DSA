@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class Prim {
-    public static int vertex, edge;
     public static double totalWeight = 0;
     public static ArrayList<ArrayList<Adjacent>> a;
     public static PriorityQueue<PrimQueueElement> q;
@@ -16,8 +15,6 @@ public class Prim {
     public static int[] par = new int[100005];
 
     public static void init(int m, int n, ArrayList<ArrayList<Adjacent>> adjacencyList) {
-        vertex = m;
-        edge = n;
         a = new ArrayList<>(adjacencyList);
         mst = new ArrayList<>();
         q = new PriorityQueue<>(Comparator.comparingDouble(o -> o.distance));
