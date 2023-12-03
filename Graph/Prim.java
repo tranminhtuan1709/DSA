@@ -28,7 +28,6 @@ public class Prim {
         q.add(new PrimQueueElement(root, 0));
         while (!q.isEmpty()) {
             int u = q.peek().vertex;
-            double du = q.peek().distance;
             q.poll();
             if (!visited[u]) {
                 visited[u] = true;
