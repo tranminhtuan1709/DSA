@@ -1,6 +1,9 @@
 package BT10;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 public class Exercise5 {
     static class Node {
@@ -26,6 +29,7 @@ public class Exercise5 {
                 return false;
             }
         }
+        
         return true;
     }
 }

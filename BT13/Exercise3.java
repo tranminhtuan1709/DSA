@@ -38,7 +38,6 @@ class Result3 {
         while (!q.isEmpty()) {
             int u = q.poll();
             onQueue[u] = false;
-            //check[u] = true;
             for (Pair i : a[u]) {
                 int v = i.vertex;
                 int wuv = i.distance;
