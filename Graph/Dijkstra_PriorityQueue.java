@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class Prim {
+public class Dijkstra_PriorityQueue {
     static class Adjacency {
         int vertex;
         int weight;
@@ -33,7 +33,6 @@ public class Prim {
     public static int[] par;
     public static int[] d;
     public static boolean[] visited;
-    public static int totalWeight = 0;
 
     public static void init() {
         Arrays.fill(par, -1);
@@ -48,13 +47,12 @@ public class Prim {
             int u = pQueue.poll().vertex;
             if (!visited[u]) {
                 visited[u] = true;
-                totalWeight += d[u];
                 for (Adjacency i : a.get(u)) {
                     int v = i.vertex;
                     int wuv = i.weight;
-                    if (d[v] > wuv) {
+                    if (d[v] > d[u] + wuv) {
                         par[v] = u;
-                        d[v] = wuv;
+                        d[v] = d[u] + wuv;
                         pQueue.add(new Pair(v, d[v]));
                     }
                 }
@@ -62,3 +60,13 @@ public class Prim {
         }
     }
 }
+
+/*
+
+Complexity:
++ The maximum element in pQueue is E so that the number of poll() is E
+  and each poll() cost logE => ElogE
++ The maximum of for loop is E and if there is a call to add(), it costs logE => ElogE
+=> O(ElogE + ElogE) ~ O(ElogE)
+
+*/
