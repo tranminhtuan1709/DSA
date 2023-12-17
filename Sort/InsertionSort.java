@@ -26,6 +26,6 @@ public class InsertionSort {
 /*
 
 Complexity:
-+ Best case => O(N) when array is already sorted ascending
++ Best case => O(1) when array is already sorted ascending
 + Worst case => O(N)
 */
